@@ -104,6 +104,8 @@
             var postalCode = address.postalCode;
             //var city = address.locality;
             var city = address.district;
+            var street = address.addressLine;
+            var province = address.adminDistrict
             /*
             alert(countryISO);
             alert(country);
@@ -126,7 +128,8 @@
                     });
                     $("#cityFrom").val(city);
                     $("#postalCodeFrom").val(postalCode);
-                    setFlag = SET_NOTHING;
+                    $("#streetFrom").val(street);
+                    $("#provinceFrom").val(province);
                     $("#btnSetFrom").html("Set Ship From");
                     break;
                 case SET_SHIP_TO:
@@ -142,16 +145,18 @@
                     });
                     $("#cityTo").val(city);
                     $("#postalCodeTo").val(postalCode);
-                    setFlag = SET_NOTHING;
+                    $("#streetTo").val(street);
+                    $("#provinceTo").val(province);                   
                     $("#btnSetTo").html("Set Ship To");
                     break;
             }
+            setFlag = SET_NOTHING;
         }
 
         function deletePushpin(who) {
             for (var i = map.entities.getLength() - 1; i >= 0; i--) {
                 var pushpin = map.entities.get(i);
-                if (pushpin instanceof Microsoft.Maps.Pushpin && pushpin.getText().indexOf(who)>-1) {
+                if (pushpin instanceof Microsoft.Maps.Pushpin && pushpin.getText().indexOf(who) > -1) {
                     map.entities.removeAt(i);
                 }
             }
@@ -267,13 +272,14 @@
             <div class="panel panel-headline">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6" id='myMap' style='height: 100vh;'></div>
+                        <div class="col-md-7" id='myMap' style='height: 80vh;'></div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <form action="rateCaculator.php">
                                 <div class="panel panel-headline">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Step1:Origin/Destination Information</h3>
+                                        <p>All Fields Are Required</p>
                                     </div>
                                     <div class="panel-body row">
                                         <div class="col-md-6">
@@ -532,17 +538,25 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="usr">City:</label>
+                                                    <label for="provinceFrom">Province:</label>
+                                                    <input required type="text" class="form-control" id="provinceFrom" name="provinceFrom">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cityFrom">City:</label>
                                                     <input required type="text" class="form-control" id="cityFrom" name="cityFrom">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="usr">Postal Code:</label>
+                                                    <label for="postalCodeFrom">Postal Code:</label>
                                                     <input required type="text" class="form-control" id="postalCodeFrom" name="postalCodeFrom">
                                                 </div>
-												<label class="fancy-radio">
-										<input name="usedFor" value="Residential" type="radio">
-										<span><i></i>Residential</span>
-									</label>
+                                                <div class="form-group">
+                                                    <label for="streetFrom">Street:</label>
+                                                    <input required type="text" class="form-control" id="streetFrom" name="streetFrom">
+                                                </div>
+                                                <label class="fancy-radio">
+                                                    <input name="usedFor" value="Residential" type="radio">
+                                                    <span><i></i>Residential</span>
+                                                </label>
                                             </fieldset>
                                         </div>
                                         <div class="col-md-6">
@@ -801,17 +815,25 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="usr">City:</label>
+                                                    <label for="provinceTo">Province:</label>
+                                                    <input required type="text" class="form-control" id="provinceTo" name="provinceTo">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cityTo">City:</label>
                                                     <input required type="text" class="form-control" id="cityTo" name="cityTo">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="usr">Postal Code:</label>
+                                                    <label for="streetTo">Street:</label>
+                                                    <input required type="text" class="form-control" id="streetTo" name="streetTo">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="postalCodeTo">Postal Code:</label>
                                                     <input required type="text" class="form-control" id="postalCodeTo" name="postalCodeTo">
                                                 </div>
-												<label class="fancy-radio">
-										<input name="usedFor" value="Business" type="radio">
-										<span><i></i>Business</span>
-									</label>
+                                                <label class="fancy-radio">
+                                                    <input name="usedFor" value="Business" type="radio">
+                                                    <span><i></i>Business</span>
+                                                </label>
                                             </fieldset>
                                         </div>
                                     </div>
@@ -834,21 +856,21 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="usr">Weight(lbs):</label>
+                                                <label for="weight">Weight(lbs):</label>
                                                 <input required type="text" class="form-control" id="weight" name="weight">
                                             </div>
                                             <div class="form-group">
-                                                <label for="usr">Length(in.):</label>
+                                                <label for="length">Length(in.):</label>
                                                 <input required type="text" class="form-control" id="length" name="length">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="usr">Width(in.):</label>
+                                                <label for="width">Width(in.):</label>
                                                 <input required type="text" class="form-control" id="width" name="width">
                                             </div>
                                             <div class="form-group">
-                                                <label for="usr">Height(in.):</label>
+                                                <label for="height">Height(in.):</label>
                                                 <input required type="text" class="form-control" id="height" name="height">
                                             </div>
                                             <div class="form-group">
