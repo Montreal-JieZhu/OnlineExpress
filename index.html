@@ -37,7 +37,7 @@
                     /* No need to set credentials if already passed in URL */
                     center: center
                 });
-                convertGeoToAddress(center);                
+                convertGeoToAddress(center);
             } else {
                 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
             }
@@ -51,7 +51,7 @@
                 var point = new Microsoft.Maps.Point(e.getX(), e.getY());
                 var locTemp = e.target.tryPixelToLocation(point);
                 var location = new Microsoft.Maps.Location(locTemp.latitude, locTemp.longitude);
-                convertGeoToAddress(location);          
+                convertGeoToAddress(location);
             }
         }
 
@@ -88,7 +88,7 @@
             var city = address.district;
             var street = address.addressLine;
             var province = address.adminDistrict;
-           
+
             switch (setFlag) {
                 case SET_SHIP_FROM:
                     $("#fromSelectCountry").children().each(function (index, element) {
@@ -879,15 +879,15 @@
     <script src="assets/scripts/klorofil-common.js"></script>
     <script>
         $(document).ready(function () {
-            $("#btnSetFrom").click(function () {          
-                
+            $("#btnSetFrom").click(function () {
+
                 setFlag = SET_SHIP_FROM;
                 if ($(this).text().indexOf("Refresh") == -1) {
                     $(this).html("<i class='fa fa-refresh fa-spin'></i> Refreshing");
                 }
             });
 
-            $("#btnSetTo").click(function () {        
+            $("#btnSetTo").click(function () {
                 setFlag = SET_SHIP_TO;
                 if ($(this).text().indexOf("Refresh") == -1) {
                     $(this).html("<i class='fa fa-refresh fa-spin'></i> Refreshing");
