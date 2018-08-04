@@ -37,14 +37,7 @@
                     /* No need to set credentials if already passed in URL */
                     center: center
                 });
-                convertGeoToAddress(center);
-                /*
-                var pushpin = new Microsoft.Maps.Pushpin(center, {
-                    icon: 'https://bingmapsisdk.blob.core.windows.net/isdksamples/defaultPushpin.png',
-                    anchor: new Microsoft.Maps.Point(12, 39)
-                });
-                map.entities.push(pushpin);
-                */
+                convertGeoToAddress(center);                
             } else {
                 map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
             }
@@ -58,18 +51,7 @@
                 var point = new Microsoft.Maps.Point(e.getX(), e.getY());
                 var locTemp = e.target.tryPixelToLocation(point);
                 var location = new Microsoft.Maps.Location(locTemp.latitude, locTemp.longitude);
-                convertGeoToAddress(location);
-                /*
-                alert(locTemp.latitude + "&" + locTemp.longitude);
-
-
-                var pin = new Microsoft.Maps.Pushpin(location, {
-                    icon: 'https://bingmapsisdk.blob.core.windows.net/isdksamples/defaultPushpin.png',
-                    anchor: new Microsoft.Maps.Point(12, 39)
-                });
-
-                map.entities.push(pin);
-                */
+                convertGeoToAddress(location);          
             }
         }
 
@@ -105,16 +87,8 @@
             //var city = address.locality;
             var city = address.district;
             var street = address.addressLine;
-            var province = address.adminDistrict
-            /*
-            alert(countryISO);
-            alert(country);
-            alert(postalCode);
-            alert(city);
-            alert(address.addressLine);
-            alert(address.adminDistrict);
-            alert(address.district);
-            */
+            var province = address.adminDistrict;
+           
             switch (setFlag) {
                 case SET_SHIP_FROM:
                     $("#fromSelectCountry").children().each(function (index, element) {
@@ -146,7 +120,7 @@
                     $("#cityTo").val(city);
                     $("#postalCodeTo").val(postalCode);
                     $("#streetTo").val(street);
-                    $("#provinceTo").val(province);                   
+                    $("#provinceTo").val(province);
                     $("#btnSetTo").html("Set Ship To");
                     break;
             }
@@ -905,34 +879,15 @@
     <script src="assets/scripts/klorofil-common.js"></script>
     <script>
         $(document).ready(function () {
-            $("#btnSetFrom").click(function () {
-                /*
-                var fieldElement = $("#fromFileds");
-                if (fieldElement.attr("disabled") == undefined) {
-                    fieldElement.attr("disabled", true);
-                    setFlag = SET_SHIP_FROM;
-                } else {
-                    fieldElement.removeAttr("disabled");
-                    setFlag = SET_NOTHING;
-                }
-                */
+            $("#btnSetFrom").click(function () {          
+                
                 setFlag = SET_SHIP_FROM;
                 if ($(this).text().indexOf("Refresh") == -1) {
                     $(this).html("<i class='fa fa-refresh fa-spin'></i> Refreshing");
                 }
             });
 
-            $("#btnSetTo").click(function () {
-                /*
-                var fieldElement = $("#toFileds");
-                if (fieldElement.attr("disabled") == undefined) {
-                    fieldElement.attr("disabled", true);
-                    setFlag = SET_SHIP_TO;
-                } else {
-                    fieldElement.removeAttr("disabled");
-                    setFlag = SET_NOTHING;
-                }
-                */
+            $("#btnSetTo").click(function () {        
                 setFlag = SET_SHIP_TO;
                 if ($(this).text().indexOf("Refresh") == -1) {
                     $(this).html("<i class='fa fa-refresh fa-spin'></i> Refreshing");
