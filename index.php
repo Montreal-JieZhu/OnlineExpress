@@ -113,7 +113,8 @@ $countries = fetch_curl($base_url);
                 var province = address.adminDistrict;
                 switch (setFlag) {
                     case SET_SHIP_FROM:
-                        $("#countryFrom").children().each(function (index, element) {
+					
+						$("#countryFrom").children().each(function (index, element) {
                             if ($(element).attr("selected") != undefined && $(element).text().indexOf(country) == -1) {
                                 $(element).removeAttr("selected");
                             }
@@ -127,6 +128,7 @@ $countries = fetch_curl($base_url);
                         $("#streetFrom").val(street);
                         $("#provinceFrom").val(province);
                         $("#btnSetFrom").html("Set Ship From");
+					
                         break;
                     case SET_SHIP_TO:
                         $("#countryTo").children().each(function (index, element) {
