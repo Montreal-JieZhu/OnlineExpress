@@ -43,7 +43,7 @@ $countries = fetch_curl($base_url);
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AuqsNVXfKfPx5B6juGoyi9rYuEZkIkYns-8GRbMbrx3BnhxpT5KsRNrRUgbyOpsm'></script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setLang=en&key=AuqsNVXfKfPx5B6juGoyi9rYuEZkIkYns-8GRbMbrx3BnhxpT5KsRNrRUgbyOpsm'></script>
         <script type='text/javascript'>
             var map;
             var center;
@@ -111,16 +111,15 @@ $countries = fetch_curl($base_url);
                 var city = address.district;
                 var street = address.addressLine;
                 var province = address.adminDistrict;
-
                 switch (setFlag) {
                     case SET_SHIP_FROM:
-                        $("#fromSelectCountry").children().each(function (index, element) {
+                        $("#countryFrom").children().each(function (index, element) {
                             if ($(element).attr("selected") != undefined && $(element).text().indexOf(country) == -1) {
                                 $(element).removeAttr("selected");
                             }
                             if ($(element).text().indexOf(country) > -1) {
                                 $(element).attr("selected", "selected");
-                                $(element).prependTo("#fromSelectCountry");
+                                $(element).prependTo("#countryFrom");
                             }
                         });
                         $("#cityFrom").val(city);
@@ -130,13 +129,13 @@ $countries = fetch_curl($base_url);
                         $("#btnSetFrom").html("Set Ship From");
                         break;
                     case SET_SHIP_TO:
-                        $("#toSelectCountry").children().each(function (index, element) {
+                        $("#countryTo").children().each(function (index, element) {
                             if ($(element).attr("selected") != undefined && $(element).text().indexOf(country) == -1) {
                                 $(element).removeAttr("selected");
                             }
                             if ($(element).text().indexOf(country) > -1) {
                                 $(element).attr("selected", "selected");
-                                $(element).prependTo("#toSelectCountry");
+                                $(element).prependTo("#countryTo");
                             }
                             //alert($(element).text())
                         });
@@ -284,11 +283,11 @@ $countries = fetch_curl($base_url);
                                                 <fieldset id="fromFileds">
                                                     <div class="form-group">
                                                         <label for="countryFrom">Country:</label>
-                                                      
+
                                                         <select class="form-control" id="countryFrom" name="countryFrom">
-                                                            <option value="CA">Canada</option>                                                             
+                                                            <option value="CA">Canada</option>
                                                         </select>
-                                                        
+
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="provinceFrom">Province:</label>
@@ -306,7 +305,7 @@ $countries = fetch_curl($base_url);
                                                         <label for="postalCodeFrom">Postal Code:</label>
                                                         <input required type="text" class="form-control" id="postalCodeFrom" name="postalCodeFrom">
                                                     </div>
-                                                    
+
                                                 </fieldset>
                                             </div>
                                             <div class="col-md-6">
@@ -315,7 +314,7 @@ $countries = fetch_curl($base_url);
                                                     <div class="form-group">
                                                         <label for="countryTo">Country:</label>
                                                         <?php if (isset($countries)) { ?>
-                                                        <select class="form-control" id="countryTo" name="countryTo">
+                                                            <select class="form-control" id="countryTo" name="countryTo">
                                                                 <?php foreach ($countries as $country) { ?>
                                                                     <option value="<?= $country->code; ?>"><?= $country->name; ?></option>
                                                                 <?php }//endloop categories dropdown ?>
@@ -588,7 +587,7 @@ $countries = fetch_curl($base_url);
                                                         <label for="postalCodeTo">Postal Code:</label>
                                                         <input required type="text" class="form-control" id="postalCodeTo" name="postalCodeTo">
                                                     </div>
-                                                    
+
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -602,7 +601,7 @@ $countries = fetch_curl($base_url);
                                                 <div class="form-group">
                                                     <label for="weight">Weight:</label>
                                                     <input required type="number" step="0.1" class="form-control" id="weight" name="weight">
-                                                </div>                              
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="length">Length:</label>
                                                     <input required type="number" step="0.1" class="form-control" id="length" name="length">
@@ -615,37 +614,37 @@ $countries = fetch_curl($base_url);
                                                     <label for="height">Height:</label>
                                                     <input required type="number" step="0.1" class="form-control" id="height" name="height">
                                                 </div>
-                     
+
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="weightUnit">Weight Unit:</label>
-                                                    <select class="form-control" id="weightUnit" name="weightUnit">                                                        
+                                                    <select class="form-control" id="weightUnit" name="weightUnit">
                                                         <option value="pound">Pound (lbs)</option>
-                                                        <option value="gram">Gram (g)</option>     
+                                                        <option value="gram">Gram (g)</option>
                                                         <option value="ounce">Ounce (oz)</option>
                                                     </select>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="dimensionUnit">Dimension Unit:</label>
-                                                    <select class="form-control" id="dimensionUnit" name="dimensionUnit">                                                        
+                                                    <select class="form-control" id="dimensionUnit" name="dimensionUnit">
                                                         <option value="inch">Inch (in)</option>
-                                                        <option value="centimeter">Centimeter (cm)</option>                            
+                                                        <option value="centimeter">Centimeter (cm)</option>
                                                     </select>
                                                 </div>
-                                                
-                                                
+
+
                                             </div>
                                         </div>
-                                        
+
                                         <div class="panel-body row">
                                             <div class="col-md-6">
-                                                <div class="form-group"  >                                
+                                                <div class="form-group"  >
                                                     <button type="submit" class="btn btn-success">Calculate</button>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </form>
