@@ -43,7 +43,7 @@ $countries = fetch_curl($base_url);
         <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
         <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
         <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setLang=en&key=AuqsNVXfKfPx5B6juGoyi9rYuEZkIkYns-8GRbMbrx3BnhxpT5KsRNrRUgbyOpsm'></script>
+       <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setLang=en&key=AuqsNVXfKfPx5B6juGoyi9rYuEZkIkYns-8GRbMbrx3BnhxpT5KsRNrRUgbyOpsm' async defer></script>
         <script type='text/javascript'>
             var map;
             var center;
