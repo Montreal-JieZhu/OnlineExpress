@@ -3,14 +3,14 @@
 //header("api-key:7YPRCFZhpdEfNSXWHCG5TyZwu6dGx9MwdK+r1R0FrUU");
 //get origin information form the FORM
 $countryFrom = $_POST['countryFrom'];
-$provinceFrom = 'QC'; //$_POST['provinceFrom'];
+$provinceFrom = $_POST['provinceFrom'];  //'QC'; //
 $cityFrom = $_POST['cityFrom'];
 $streetFrom = $_POST['streetFrom'];
 $postalCodeFrom = $_POST['postalCodeFrom'];
 
 //get destination information form the FORM
-$countryTo = 'CA'; //$_POST['countryTo'];
-$provinceTo = 'QC'; //$_POST['provinceTo'];
+$countryTo = $_POST['countryTo'];  //'CA'; //
+$provinceTo = $_POST['provinceTo'];  //'QC'; //
 $cityTo = $_POST['cityTo'];
 $streetTo = $_POST['streetTo'];
 $postalCodeTo = $_POST['postalCodeTo'];
